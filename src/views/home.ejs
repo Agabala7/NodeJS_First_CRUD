@@ -1,0 +1,68 @@
+<div class="container">
+    <h1 class="display-4 text-center mt-5">İşçilərin Siyahısı</h1>
+<div class="float-right">
+    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#addEmp">Əlavə Et</button>
+</div>
+
+<table class="table">
+    <tr>
+        <th>S/N</th>
+        <th>Soyad Ad</th>
+        <th>Vəzifə</th>
+        <th>Maaş</th>
+        <th>Tarix</th>
+        <th>Əməliyyatlar</th>
+    </tr>
+
+    <% for( let i = 0; i < isciler.length; i++ ) { %>
+    
+        
+        <tr>
+            <td><%= (i + 1) %></td>
+            <td><%= isciler[i].adsoyad %> </td>
+            <td><%= isciler[i].vezife %> </td>
+            <td><%= isciler[i].maas %> </td>
+            <td><%= isciler[i].tarix %> </td>
+            <td>
+                <button class="btn btn-outline-primary">Redaktə et</button>
+                <button class="btn btn-outline-danger" onclick="Sil('<%= isciler[i].id %>')">Sil</button>
+            </td>
+        </tr>
+
+    <% } %>
+
+</table>
+</div>
+
+
+<div class="modal fade" id="addEmp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yeni İşçi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/isci-elave" method="POST">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Soyad Ad</label>
+              <input type="text" class="form-control" id="recipient-name" name="adsoyad" />
+            </div>
+            <div class="form-group">
+                <label for="recipient-vezife" class="col-form-label">Vəzifə</label>
+                <input type="text" class="form-control" id="recipient-vezife" name="vezife" />
+              </div><div class="form-group">
+                <label for="recipient-maas" class="col-form-label">Maaş:</label>
+                <input type="number" step="0.01" class="form-control" id="recipient-maas" name="maas" />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                <button type="submit" class="btn btn-primary">Əlavə et</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
