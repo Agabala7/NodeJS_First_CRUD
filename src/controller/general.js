@@ -37,8 +37,21 @@ const iscilerSil = async (req, res) => {
     }
 }
 
+const iscilerRedakte = async (req,res) => {
+    const editEmp = await generalModel.iscilerRedakte(req.body.edit_id,req.body.edit_adsoyad,req.body.edit_vezife,req.body.edit_maas);
+
+    if(editEmp) {
+        res.redirect("/");
+    }else { 
+        res.status(404).json({
+            "message" : "Error"
+        });
+    }
+}
+
 module.exports = {
     iscilerGetir,
     iscilerElave,
-    iscilerSil
+    iscilerSil,
+    iscilerRedakte
 }

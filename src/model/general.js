@@ -58,3 +58,23 @@ exports.iscilerSil = async (id) => {
         });
     });
 }
+
+exports.iscilerRedakte = async (id,adsoyad,vezife,maas) => {
+    return new Promise((resolve,reject) => {
+        const query = `UPDATE isciler SET adsoyad = ?, vezife = ?, maas = ? where id = ?`;
+        const filter = [adsoyad,vezife,maas,id];
+
+        DB.query(query, filter, async(err, result, fields) => {
+            if(err) {
+                resolve(err);
+                return 0;
+            }else if(result === undefined || !result || result.length === 0) {
+                resolve(err);
+                return 0;
+            }else {
+                resolve(1);
+                return 1;
+            }
+        });
+    });
+}
